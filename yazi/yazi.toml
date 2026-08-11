@@ -1,0 +1,26 @@
+[opener]
+play = [
+	{ run = 'clapper "$@"', desc = "clapper" },
+	{ run = 'mpc clear; mpc add "$@"; mpc play; rmpc; mpc clear', desc = "rmpc" }
+]
+edit = [
+	{ run = 'micro "$@"', desc = "micro", block = true},
+	{ run = 'zeditor "$@"', desc = "zed", orphan = true},
+	{ run = 'helix "$@"', desc = "helix", block = true}
+]
+open = [
+	{run = 'imv-dir "$@"', desc = "imv", orphan = true},
+	{run = 'chafa "$@"', desc = "chafa", block = true}
+]
+
+[open]
+rules = [  
+  { mime = "video/*", use = "play" },
+  { mime = "audio/*", use = "play" },
+  
+  { mime = "image/*", use = "open" },
+
+  { mime = "application/*", use = "edit" },
+  { mime = "text/*", use = "edit" },
+  { mime = "*", use = "edit" }, # for files without extension
+]

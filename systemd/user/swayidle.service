@@ -1,0 +1,15 @@
+[Unit]
+Description=Swayidle unit
+Documentation=man:swayidle(1)
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/swayidle -w \
+  timeout 60 "niri msg action power-off-monitors" \
+  resume "niri msg action power-on-monitors" \
+  timeout 600 "systemctl suspend"
+Restart=always
+
+[Install]
+WantedBy=graphical-session.target
