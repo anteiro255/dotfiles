@@ -25,7 +25,7 @@
 	    "custom/archicon"
     ],
     "niri/workspaces": {
-        "all-outputs": true,
+        "all-outputs": false,
         "format": "{index}"
     },
 

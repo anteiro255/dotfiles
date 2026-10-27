@@ -29,11 +29,11 @@
 	},
 	"edit_predictions": {
 		"allow_data_collection": "yes",
-		"mode": "eager",
-		"provider": "zed",
+		"mode": "subtle",
+		"provider": "ollama",
 		"ollama": {
 			"prompt_format": "qwen",
-   "max_output_tokens": 256,
+			"max_output_tokens": 256,
 			"api_url": "http://localhost:11434",
 			"model": "gemma4:12b",
 		},
@@ -64,42 +64,59 @@
 		"dock": "left",
 	},
 	"agent": {
+		"show_turn_stats": true,
+		"auto_compact": {},
+		"sandbox_permissions": {
+			"allow_unsandboxed": true,
+			"allow_all_hosts": true,
+			"write_paths": ["/home/user/Projects"],
+			"network_hosts": [
+				"index.crates.io",
+				"static.crates.io",
+				"github.com",
+				"crates.io",
+				"raw.githubusercontent.com",
+				"docs.rs",
+			],
+		},
 		"tool_permissions": {
-   "tools": {
-    "terminal": {
-     "default": "allow"
-    }
-   }
-  },
-  "profiles": {
-   
-  },
-  "notify_when_agent_waiting": "all_screens",
-  "play_sound_when_agent_done": "when_hidden",
-  "terminal_init_command": "opencode",
-  "sidebar_side": "right",
-  "favorite_models": [
-   {
-    "provider": "openrouter",
-    "model": "openai/gpt-5.6-luna",
-    "enable_thinking": true
-   },
-   {
-    "provider": "openrouter",
-    "model": "~deepseek/deepseek-v4-flash-latest",
-    "enable_thinking": true
-   }
-  ],
-  "inline_assistant_model": {
-   "provider": "google",
-   "model": "gemini-3-flash-preview",
-   "enable_thinking": false
-  },
-  "default_profile": "write",
+			"tools": {
+				"fetch": {
+					"default": "allow",
+				},
+				"terminal": {
+					"default": "allow",
+				},
+			},
+		},
+		"profiles": {},
+		"notify_when_agent_waiting": "all_screens",
+		"play_sound_when_agent_done": "when_hidden",
+		"terminal_init_command": "opencode",
+		"favorite_models": [
+			{
+				"provider": "openrouter",
+				"model": "openai/gpt-5.6-luna",
+				"enable_thinking": true,
+			},
+			{
+				"provider": "openrouter",
+				"model": "~deepseek/deepseek-v4-flash-latest",
+				"enable_thinking": true,
+				"effort": "high",
+			},
+		],
+		"inline_assistant_model": {
+			"provider": "openrouter",
+			"model": "openai/gpt-5.6-luna",
+			"enable_thinking": false,
+		},
+		"default_profile": "write",
 		"flexible": false,
 		"dock": "right",
 		"enabled": true,
 		"default_model": {
+			"effort": "high",
 			"enable_thinking": true,
 			"provider": "openrouter",
 			"model": "~deepseek/deepseek-v4-flash-latest",

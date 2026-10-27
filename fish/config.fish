@@ -1,5 +1,5 @@
 # vars
-set -gx EDITOR micro
+set -gx EDITOR helix
 set -gx GUI_EDITOR zed
 
 set -gx AUR_INSTALLER yay
@@ -14,41 +14,32 @@ if status is-interactive
     # cfg
     alias _niri "$EDITOR ~/.config/niri/config.kdl"
     alias _fish "$EDITOR ~/.config/fish/config.fish"
-    
+
     # one symbol shortcuts
     alias s sudo
+    alias o open
     alias g git
-    alias z zeditor
     alias m micro
-    alias v nvim
     alias h helix
-    alias b btop
     alias c clear
-    alias y yazi
 
     # two symbols shortcuts
     alias py python
     alias oc opencode
     alias ff "fastfetch --logo-color-1 blue --logo-color-2 blue --color blue"
-    
-    # system control
-    alias q exit
-    alias hypr-logout "niri msg action quit"
-    alias off "systemctl poweroff"
-    alias suspend "systemctl suspend"
-    alias hibernate "systemctl hibernate"
 
     # shortcuts
-    alias pcm "sudo pacman -S --noconfirm --needed"
-    alias pcmrm "sudo pacman -Rns --noconfirm"
+    alias get_pcm "sudo pacman -S --noconfirm --needed"
+    alias del_pcm "sudo pacman -Rns --noconfirm"
     alias get "$AUR_INSTALLER -S --noconfirm --needed"
-    alias aurrm "$AUR_INSTALLER -Rns --noconfirm"
+    alias del "$AUR_INSTALLER -Rns --noconfirm"
     alias update_system "$AUR_INSTALLER --noconfirm"
-    
+
     alias smd_restart "sudo systemctl restart smb nmb winbind"
     alias rebuild_kernel "sudo mkinitcpio -P"
     alias fan_manual_on "sudo modprobe -r thinkpad_acpi; sudo modprobe thinkpad_acpi fan_control=1"
     alias fan_manual_off "sudo modprobe -r thinkpad_acpi; sudo modprobe thinkpad_acpi fan_control=0"
+    alias vnc_on "sudo modprobe vkms; wayvnc -r -o Virtual-1 0.0.0.0 5900 &"
 
     # tclock
     set tclock_args "-c blue"
@@ -58,7 +49,34 @@ if status is-interactive
     alias clock "tclock $tclock_args clock"
 end
 
-# PATH
+# functions
+function off_in
+    sleep $argv[1] && shutdown now
+end
+function vnc_on
+    sudo modprobe vkms
+    sleep 0.5
+    wayvnc -r -o Virtual-1 0.0.0.0 5900 >/dev/null 2>&1 &
+    niri msg output Virtual-1 on
+    disown
+end
+function vnc_off
+    niri msg output Virtual-1 off
+    pkill wayvnc
+    sudo modprobe -r vkms
+end
+
+function y # yazi
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    command yazi $argv --cwd-file="$tmp"
+    if read -z cwd <"$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
+        builtin cd -- "$cwd"
+    end
+    command rm -f -- "$tmp"
+end
+function gt # stands for Get To
+    mkdir -p -- $argv[1]; and cd -- $argv[1]
+end
 set -gx PATH $PATH $HOME/.cargo/bin
 set -gx PATH $PATH $HOME/.local/bin
 set -gx PATH $PATH $HOME/go/bin

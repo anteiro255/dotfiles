@@ -1,22 +1,21 @@
 [opener]
-play = [
-	{ run = 'clapper "$@"', desc = "clapper" },
-	{ run = 'mpc clear; mpc add "$@"; mpc play; rmpc; mpc clear', desc = "rmpc" }
-]
 edit = [
-	{ run = 'micro "$@"', desc = "micro", block = true},
-	{ run = 'zeditor "$@"', desc = "zed", orphan = true},
-	{ run = 'helix "$@"', desc = "helix", block = true}
+	{ run = 'helix %s', desc = "helix", block = true},
+	{ run = 'micro %s', desc = "micro", block = true},
+	{ run = 'zeditor %s', desc = "zed", orphan = true},
+	{ run = 'xdg-open %s', desc = "xdg-open" },
+
 ]
 open = [
-	{run = 'imv-dir "$@"', desc = "imv", orphan = true},
-	{run = 'chafa "$@"', desc = "chafa", block = true}
+	{ run = 'xdg-open %s', desc = "xdg-open" },
+	{ run = 'imv-dir %s', desc = "imv", orphan = true},
+	{ run = 'clapper %s', desc = "clapper"},
 ]
 
 [open]
 rules = [  
-  { mime = "video/*", use = "play" },
-  { mime = "audio/*", use = "play" },
+  { mime = "video/*", use = "open" },
+  { mime = "audio/*", use = "open" },
   
   { mime = "image/*", use = "open" },
 

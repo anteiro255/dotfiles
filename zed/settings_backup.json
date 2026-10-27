@@ -1,0 +1,154 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+	"agent_servers": {},
+	"diff_view_style": "split",
+	"code_lens": "on",
+	"completion_menu_item_kind": "symbol",
+	"completion_menu_scrollbar": "always",
+	"completions": {
+		"words_min_length": 1,
+		"words": "enabled",
+	},
+	"always_treat_brackets_as_autoclosed": true,
+	"format_on_save": "on",
+	"indent_guides": {
+		"background_coloring": "disabled",
+		"coloring": "indent_aware",
+	},
+	"hard_tabs": true,
+	"relative_line_numbers": "enabled",
+	"which_key": {
+		"enabled": true,
+	},
+	"edit_predictions": {
+		"allow_data_collection": "yes",
+		"mode": "subtle",
+		"provider": "ollama",
+		"ollama": {
+			"prompt_format": "qwen",
+   "max_output_tokens": 256,
+			"api_url": "http://localhost:11434",
+			"model": "gemma4:12b",
+		},
+	},
+	"proxy": "",
+	"colorize_brackets": true,
+	"diagnostics": {
+		"inline": {
+			"enabled": true,
+		},
+	},
+	"base_keymap": "VSCode",
+	"cli_default_open_behavior": "existing_window",
+	"ui_font_weight": 900.0,
+	"ui_font_family": "JetBrainsMono Nerd Font Mono",
+	"buffer_line_height": "standard",
+	"buffer_font_weight": 900.0,
+	"buffer_font_family": "JetBrainsMono Nerd Font Mono",
+	"terminal": {
+		"font_size": 16.0,
+		"font_weight": 900.0,
+		"font_family": "JetBrainsMono Nerd Font Mono",
+	},
+	"outline_panel": {
+		"dock": "left",
+	},
+	"collaboration_panel": {
+		"dock": "left",
+	},
+	"agent": {
+		"show_turn_stats": true,
+  "auto_compact": {
+   
+  },
+  "sandbox_permissions": {
+   "allow_unsandboxed": true,
+   "allow_all_hosts": true,
+   "write_paths": [
+    "/home/user/Projects"
+   ],
+   "network_hosts": [
+    "index.crates.io",
+    "static.crates.io",
+    "github.com",
+    "crates.io",
+    "raw.githubusercontent.com",
+    "docs.rs"
+   ]
+  },
+  "tool_permissions": {
+   "tools": {
+    "fetch": {
+     "default": "allow"
+    },
+    "terminal": {
+     "default": "allow"
+    }
+   }
+  },
+  "profiles": {
+   
+  },
+  "notify_when_agent_waiting": "all_screens",
+  "play_sound_when_agent_done": "when_hidden",
+  "terminal_init_command": "opencode",
+  "sidebar_side": "right",
+  "favorite_models": [
+   {
+    "provider": "openrouter",
+    "model": "openai/gpt-5.6-luna",
+    "enable_thinking": true
+   },
+   {
+    "provider": "openrouter",
+    "model": "~deepseek/deepseek-v4-flash-latest",
+    "enable_thinking": true,
+    "effort": "high"
+   }
+  ],
+  "inline_assistant_model": {
+   "provider": "openrouter",
+   "model": "openai/gpt-5.6-luna",
+   "enable_thinking": false
+  },
+  "default_profile": "write",
+		"flexible": false,
+		"dock": "right",
+		"enabled": true,
+		"default_model": {
+			"effort": "high",
+   "enable_thinking": true,
+			"provider": "openrouter",
+			"model": "~deepseek/deepseek-v4-flash-latest",
+		},
+	},
+	"git_panel": {
+		"dock": "left",
+	},
+	"project_panel": {
+		"dock": "left",
+		"button": true,
+	},
+	"session": {
+		"trust_all_worktrees": true,
+	},
+	"icon_theme": {
+		"mode": "system",
+		"light": "Zed (Default)",
+		"dark": "Soft Charmed Icons",
+	},
+	"ui_font_size": 16,
+	"buffer_font_size": 16.0,
+	"theme": {
+		"mode": "system",
+		"light": "Ayu Light",
+		"dark": "Tokyo Night",
+	},
+}

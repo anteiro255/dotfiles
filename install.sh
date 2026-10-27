@@ -127,9 +127,10 @@ if [[ "$is_prog_lang" == "y" ]]; then
 	sudo npm install -g prettier # formatter
 
 	# python
-	$install_command python3 python-pip python-pipx
-	pipx install pyright # lsp
-	pipx install black # formatter
+	$install_command python uv
+	uv tool install ruff
+	uv tool install pyright
+	uv tool install pytest
 fi
 
 systemctl --user daemon-reload

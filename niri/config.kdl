@@ -23,24 +23,25 @@ input {
     keyboard {
         xkb {
             layout "us,ru"
-            options "grp:alt_shift_toggle,compose:ralt,ctrl:nocaps"
-        }
+            options "grp:caps_toggle,compose:ralt,ctrl:nocaps"
+            }
     }
 	touch {
 	    map-to-output "DP-1"
 	}
-	touchpad {
-    	tap
-    	natural-scroll
+    touchpad {
+        tap
+        natural-scroll
 
-    	accel-profile "adaptive"
-    	accel-speed 0.3
+        accel-profile "adaptive"
+        accel-speed 0.1
 
-    	scroll-factor 1
-    	scroll-method "two-finger"
+        scroll-factor 0.4
+        scroll-method "two-finger"
 
-    	// dwt // Disable-While-Typing
-	}
+        // dwt 
+        // dwt-pms
+    }
     mouse {
         accel-speed -0.45
         accel-profile "flat"
@@ -56,10 +57,16 @@ input {
 
 output "eDP-1" {
     // off
-    mode "1920x1080@120.030"
+    mode "1920x1080@60.000"
     scale 1
     transform "normal"
-    position x=1280 y=0
+    position x=0 y=0
+}
+output "Virtual-1" { // phone
+    mode "1280x720@60.000"
+    scale 1
+    transform "normal"
+    position x=0 y=1080
 }
 
 cursor{
@@ -111,6 +118,7 @@ spawn-at-startup "mako"
 spawn-at-startup "wl-clip-persist" "--clipboard" "regular"
 spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
 
+spawn-at-startup "hypridle"
 spawn-at-startup "swayosd-server"
 spawn-at-startup "/usr/lib/soteria-polkit/soteria"
 
@@ -146,6 +154,12 @@ window-rule {
 workspace "1"
 workspace "2"
 workspace "3"
+workspace "4"
+workspace "5"
+workspace "6"
+workspace "7"
+workspace "8"
+
 
 
 window-rule {
@@ -169,7 +183,7 @@ window-rule {
 	open-maximized true
 }
 window-rule {
-	match app-id="md.Obsidian"
+	match app-id="md.obsidian.Obsidian"
 	open-on-workspace "3"
 	open-maximized true
 }
@@ -214,8 +228,10 @@ binds {
     Mod+M         allow-when-locked=true { spawn "swayosd-client" "--playerctl=next"; }
 
 	// Control binds
-    Mod+O repeat=false { toggle-overview; }
+    Mod+W repeat=false { toggle-overview; }
     Mod+C repeat=false { close-window; }
+
+    Mod+Alt+Z { spawn "obs-cmd" "recording" "toggle"; }
 
 	// Change focus window
     Mod+Left  { focus-column-left; }
@@ -317,9 +333,6 @@ binds {
     Mod+Ctrl+R { reset-window-height; }
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
-
-    // Expand the focused column to space not taken up by other fully visible columns.
-    // Makes the column "fill the rest of the space".
     Mod+Ctrl+F { expand-column-to-available-width; }
 
     Mod+S { center-column; }

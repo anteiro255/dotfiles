@@ -15,6 +15,7 @@ git add systemd
 
 # editors
 git add micro
+git add helix
 git add zed
 
 git add yay
