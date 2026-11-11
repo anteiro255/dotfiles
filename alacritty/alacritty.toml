@@ -8,8 +8,7 @@ TERM = "alacritty"
 style = { shape = "Beam", blinking = "On" }
 
 [font]
-size = 20
-
+size = 16
 [font.normal]
 family = "JetBrains Mono Nerd Font"
 style = "Bold"
